@@ -1,0 +1,188 @@
+/* ==========================================================================
+   CMS ART — gallery theme
+   แนวคิด: ผนังแกลเลอรี  ผลงานศิลปินคือพระเอก  UI เงียบ เรียบ ตัวหนังสือชัด
+   สีเดียวที่ดัง = อัลตราคมารีน (ปุ่ม/ลิงก์)  สีที่สอง = ชมพูแมเจนต้า (หัวใจ/ราคา)
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=Noto+Serif+Thai:wght@500;600;700&display=swap');
+
+:root {
+    --paper:#F7F7F5; --surface:#FFFFFF; --surface-2:#F1F0F5; --ink:#15141B; --ink-2:#55545F;
+    --line:#E4E3E8; --accent:#3D35E8; --accent-hover:#2C25C4; --accent-ink:#FFFFFF; --wash:#ECEBFB;
+    --hot:#E0307A; --ok:#1B8F5A;
+    --shadow:0 1px 2px rgba(21,20,27,.06), 0 8px 24px rgba(21,20,27,.06);
+    --r-frame:6px; --r-card:14px; --r-pill:999px;
+    --font-heading:'Fraunces','Noto Serif Thai',serif;
+    --font-body:'IBM Plex Sans Thai','Noto Sans Thai',sans-serif;
+    /* ตัวแปรเดิมที่หน้าเก่าอ้างถึง — ผูกกับสีใหม่ */
+    --dark-purple:var(--ink); --primary-purple:var(--accent); --accent-pink:var(--hot); --light-peach:var(--wash);
+    --text-main:var(--ink); --text-sub:var(--ink-2);
+    --bg-body-dark:var(--paper); --bg-body-light:var(--paper);
+}
+html[data-theme="dark"] {
+    --paper:#0E0D13; --surface:#17161E; --surface-2:#1F1E28; --ink:#F2F1F6; --ink-2:#A5A4B3;
+    --line:#2A2933; --accent:#8C86FF; --accent-hover:#A9A4FF; --accent-ink:#0E0D13; --wash:#23213D;
+    --hot:#FF6FA5; --ok:#4CD08E; --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.35);
+}
+
+/* ---------- Base ---------- */
+html body {
+    background:var(--paper) !important; color:var(--ink); font-family:var(--font-body); font-weight:400;
+    min-height:100vh; line-height:1.65; -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4,h5,h6,.navbar-brand,.card-title,.modal-title { font-family:var(--font-heading); font-weight:600; letter-spacing:-.01em; }
+.btn,.nav-link,.badge,.form-label,label { font-family:var(--font-body); }
+html body .fw-bold { font-weight:600 !important; }
+a { color:var(--accent); }
+:focus-visible { outline:3px solid var(--accent); outline-offset:2px; }
+.text-muted,.text-secondary { color:var(--ink-2) !important; }
+.text-dark { color:var(--ink) !important; }
+.text-pink { color:var(--hot) !important; }
+.text-purple { color:var(--accent) !important; }
+.text-shadow { text-shadow:none !important; }
+html[data-theme="dark"] .bg-white, html[data-theme="dark"] .bg-light { background-color:var(--surface) !important; color:var(--ink); }
+html[data-theme="dark"] .text-dark { color:var(--ink) !important; }
+html[data-theme="dark"] .btn-light { background:var(--surface-2); color:var(--ink); border-color:var(--line); }
+html[data-theme="dark"] .border, html[data-theme="dark"] .border-bottom, html[data-theme="dark"] .border-top { border-color:var(--line) !important; }
+@media (prefers-reduced-motion:reduce){ *{ animation:none !important; transition:none !important; scroll-behavior:auto !important; } }
+
+/* ---------- Navbar ---------- */
+html body .navbar {
+    background:color-mix(in srgb, var(--paper) 88%, transparent) !important; backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line); box-shadow:none !important; padding:.7rem 0;
+}
+html body .navbar .navbar-brand { color:var(--ink) !important; font-size:1.45rem; font-weight:700; }
+html body .navbar .navbar-brand i { color:var(--accent); }
+html body .navbar .nav-link, html body .navbar .text-white-50, html body .navbar a.nav-link, html body .navbar .navbar-nav .nav-link { color:var(--ink) !important; }
+html body .navbar-toggler { border-color:var(--line); }
+html body .navbar-toggler-icon { filter:none; }
+html[data-theme="dark"] .navbar-toggler-icon { filter:invert(1); }
+html body .navbar .btn-outline-light { color:var(--ink); border-color:var(--line); }
+html body .navbar .btn-outline-light:hover { background:var(--ink); color:var(--paper); }
+html body .navbar .btn-warning { background:var(--ink); color:var(--paper) !important; border:0; }
+.navbar-search-group { background:var(--surface) !important; border:1px solid var(--line) !important; border-radius:var(--r-pill); }
+.navbar-search-group:focus-within { border-color:var(--accent) !important; box-shadow:0 0 0 4px color-mix(in srgb, var(--accent) 18%, transparent) !important; }
+.navbar-search-group input { color:var(--ink) !important; }
+.theme-toggle-btn { background:var(--surface-2) !important; color:var(--ink) !important; border:1px solid var(--line) !important; width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:background .2s; }
+.theme-toggle-btn:hover { background:var(--wash) !important; transform:none !important; }
+.dropdown-menu { background:var(--surface); border:1px solid var(--line) !important; border-radius:var(--r-card); box-shadow:var(--shadow) !important; }
+.dropdown-item { color:var(--ink); border-radius:8px; }
+.dropdown-item:hover { background:var(--wash); }
+
+/* ---------- Buttons ---------- */
+.btn { border-radius:var(--r-pill); padding:.5rem 1.25rem; font-weight:600; transition:background .2s, color .2s, border-color .2s; }
+.btn:hover { transform:none; }
+.btn-purple, html body .btn-primary { background:var(--accent); color:var(--accent-ink) !important; border:1px solid var(--accent); }
+.btn-purple:hover, html body .btn-primary:hover { background:var(--accent-hover); border-color:var(--accent-hover); color:var(--accent-ink) !important; box-shadow:none; }
+.btn-pink { background:var(--hot); color:#fff !important; border:1px solid var(--hot); }
+.btn-pink:hover { background:color-mix(in srgb, var(--hot) 85%, #000); color:#fff !important; box-shadow:none; }
+.btn-ink { background:var(--ink); color:var(--paper); border:1px solid var(--ink); padding:.7rem 1.25rem; }
+.btn-ink:hover { background:var(--accent); border-color:var(--accent); color:var(--accent-ink); }
+.btn-light-main { background:var(--ink); color:var(--paper) !important; border:1px solid var(--ink); }
+.btn-light-main:hover { background:var(--accent); border-color:var(--accent); color:var(--accent-ink) !important; box-shadow:none; }
+.btn-outline-purple { color:var(--accent); border:1px solid var(--accent); background:transparent; }
+.btn-outline-purple:hover { background:var(--accent); color:var(--accent-ink); }
+.btn-outline-secondary,.btn-outline-dark { border-color:var(--line); color:var(--ink); }
+.btn-outline-secondary:hover,.btn-outline-dark:hover { background:var(--ink); color:var(--paper); border-color:var(--ink); }
+
+/* ---------- Hero (หน้าแรก) : ผนังแกลเลอรีจากผลงานล่าสุดจริง ---------- */
+html body .hero-banner {
+    background:transparent !important; backdrop-filter:none; color:var(--ink); padding:56px 0 40px; margin-bottom:2.5rem;
+    border-radius:0; box-shadow:none !important; overflow:visible;
+}
+.hero-title { font-size:clamp(2.1rem,4.6vw,3.6rem); line-height:1.18; font-weight:600; max-width:15ch; margin:0 0 1.1rem; color:var(--ink) !important; }
+.hero-lead { font-size:1.12rem; color:var(--ink-2) !important; max-width:44ch; margin-bottom:1.75rem; }
+.hero-actions { display:flex; gap:.75rem; flex-wrap:wrap; }
+.hero-wall { display:grid; gap:12px; grid-template-columns:repeat(6,1fr); grid-template-rows:repeat(6,minmax(0,58px)); padding:14px; background:var(--surface-2); border-radius:var(--r-card); border:1px solid var(--line); }
+.wall-piece { margin:0; background:var(--surface); padding:6px; border:1px solid var(--line); border-radius:var(--r-frame); overflow:hidden; box-shadow:var(--shadow); }
+.wall-piece img { width:100%; height:100%; object-fit:cover; display:block; border-radius:2px; }
+.wall-1 { grid-column:1 / 4; grid-row:1 / 5; } .wall-2 { grid-column:4 / 7; grid-row:1 / 3; }
+.wall-3 { grid-column:4 / 6; grid-row:3 / 7; } .wall-4 { grid-column:1 / 3; grid-row:5 / 7; }
+.wall-5 { grid-column:3 / 4; grid-row:5 / 7; } .wall-6 { grid-column:6 / 7; grid-row:3 / 7; }
+.wall-empty { background:linear-gradient(135deg,var(--wash),var(--surface)); }
+@media (max-width:991px){ .hero-wall{ grid-template-rows:repeat(6,minmax(0,40px)); } .hero-title{ max-width:none; } }
+
+/* ---------- Tabs / pills ---------- */
+.nav-pills { gap:.5rem; }
+html body .nav-pills .nav-link, html body .custom-pills .nav-link {
+    color:var(--ink) !important; background:transparent; border:1px solid var(--line); font-weight:600; border-radius:var(--r-pill);
+    backdrop-filter:none; transition:background .2s, border-color .2s;
+}
+html body .nav-pills .nav-link:hover:not(.active) { background:var(--wash); transform:none; border-color:var(--accent); }
+html body .nav-pills .nav-link.active, html body .custom-pills .nav-link.active { background:var(--ink) !important; color:var(--paper) !important; border-color:var(--ink) !important; box-shadow:none; }
+
+/* ---------- Cards = ป้ายผลงานข้างกรอบรูป ---------- */
+.content-card,.service-card,.card,.admin-card { background:var(--surface); color:var(--ink); border:1px solid var(--line) !important; border-radius:var(--r-card); box-shadow:none !important; overflow:hidden; }
+.service-card { transition:border-color .2s, transform .25s; }
+.service-card:hover { transform:translateY(-3px); border-color:var(--accent) !important; box-shadow:var(--shadow) !important; }
+.service-img-container { background:var(--surface-2); height:230px; }
+.service-img-top,.card-img-top { transition:transform .6s cubic-bezier(.2,.7,.2,1); }
+.service-card:hover .service-img-top { transform:scale(1.04); }
+.artist-badge { background:color-mix(in srgb, var(--surface) 92%, transparent); color:var(--ink); box-shadow:var(--shadow); font-weight:600; }
+.price-tag { color:var(--hot); font-weight:700; font-size:1.15rem; }
+.empty-state { color:var(--ink-2); padding:4rem 2rem; text-align:center; }
+.rounded-4 { border-radius:var(--r-card) !important; }
+.shadow-sm,.shadow,.shadow-lg { box-shadow:var(--shadow) !important; }
+.badge-peach { background:var(--wash); color:var(--accent); font-weight:600; }
+.badge-pink { background:var(--hot); color:#fff; font-weight:600; }
+.badge-purple { background:var(--accent); color:var(--accent-ink); font-weight:600; }
+.gallery-img-wrapper { background:var(--surface-2); border-radius:var(--r-frame); }
+.gallery-img { object-fit:contain; }
+.btn-heart { background:var(--surface); color:var(--ink-2); border:1px solid var(--line); }
+.btn-heart.liked { color:var(--hot); border-color:var(--hot); background:color-mix(in srgb, var(--hot) 10%, var(--surface)); }
+.comment-list::-webkit-scrollbar-thumb { background:var(--line); }
+
+/* ---------- Forms / modal / table ---------- */
+.form-control,.form-select,.input-group-text { background:var(--surface-2); color:var(--ink); border:1px solid var(--line); border-radius:10px; }
+.form-control:focus,.form-select:focus { background:var(--surface); color:var(--ink); border-color:var(--accent); box-shadow:0 0 0 4px color-mix(in srgb, var(--accent) 18%, transparent); }
+.form-control.bg-light,.form-control.border-0 { background:var(--surface-2) !important; color:var(--ink) !important; border:1px solid var(--line) !important; }
+.modal-content { background:var(--surface); color:var(--ink); border:1px solid var(--line) !important; border-radius:var(--r-card); box-shadow:var(--shadow); }
+.modal-footer,.modal-header { border-color:var(--line); }
+.btn-close { filter:none; } html[data-theme="dark"] .btn-close { filter:invert(1); }
+.table { --bs-table-bg:transparent; color:var(--ink); }
+.table th { color:var(--ink) !important; font-weight:600 !important; border-bottom:2px solid var(--ink) !important; background:transparent !important; }
+.table td { color:var(--ink) !important; font-weight:400; border-color:var(--line); }
+tbody tr:hover { background:var(--wash) !important; }
+.border-dashed { border-style:dashed !important; }
+.swal2-popup { background:var(--surface); color:var(--ink); border-radius:var(--r-card); font-family:var(--font-body); }
+
+/* ---------- Auth modal / หน้า forgot ---------- */
+.auth-modal-content { border-radius:var(--r-card); }
+.auth-tabs { background:var(--surface-2); border-radius:var(--r-pill); padding:5px; border:1px solid var(--line); }
+.auth-tabs .nav-link { color:var(--ink-2); border-radius:var(--r-pill); font-weight:600; }
+.auth-tabs .nav-link.active { background:var(--surface); color:var(--ink); box-shadow:var(--shadow); }
+.auth-input-group { background:var(--surface-2); border:1px solid var(--line); border-radius:12px; }
+.auth-input-group:focus-within { border-color:var(--accent); background:var(--surface); box-shadow:0 0 0 4px color-mix(in srgb, var(--accent) 18%, transparent); }
+.auth-input-group input { color:var(--ink) !important; }
+.auth-input-group .input-group-text { color:var(--accent); }
+.artist-check-box { background:var(--wash); border:1.5px dashed var(--accent); border-radius:12px; }
+.btn-auth { border-radius:12px; }
+html body.auth-page { display:flex; align-items:center; justify-content:center; padding:1.5rem; }
+.auth-card { width:100%; max-width:440px; background:var(--surface); border:1px solid var(--line); border-radius:var(--r-card); padding:2.25rem; box-shadow:var(--shadow); }
+.auth-brand { display:inline-block; font-family:var(--font-heading); font-weight:700; font-size:1.3rem; color:var(--ink); text-decoration:none; margin-bottom:1.5rem; }
+.auth-brand i { color:var(--accent); margin-right:.4rem; }
+.auth-title { font-size:1.9rem; margin-bottom:.4rem; }
+.auth-lead { color:var(--ink-2); font-size:.95rem; margin-bottom:1.5rem; }
+
+/* ---------- Profile ---------- */
+html body .fb-profile-header { background:transparent; }
+.fb-cover-photo { height:320px; border-radius:0 0 var(--r-card) var(--r-card); box-shadow:none !important; background-color:var(--surface-2); }
+.fb-profile-avatar-wrapper { background:var(--paper) !important; backdrop-filter:none; box-shadow:none !important; padding:6px; }
+.fb-profile-avatar { border:0; }
+html body .fb-profile-info h2,html body .fb-profile-info p { color:var(--ink) !important; text-shadow:none !important; }
+html body h4.text-white,html body h5.text-white,html body .text-white.text-shadow { color:var(--ink) !important; text-shadow:none !important; }
+html body .col-12.text-white { color:var(--ink-2) !important; }
+.camera-btn { background:var(--surface); color:var(--ink); border:1px solid var(--line); }
+.artist-menu-btn { background:transparent; border:1px solid var(--line); color:var(--ink) !important; border-radius:12px; padding:.9rem 1.2rem; text-align:left; font-weight:600; }
+.artist-menu-btn i { color:var(--accent) !important; margin-right:10px; }
+.artist-menu-btn:hover { border-color:var(--accent); background:var(--wash); color:var(--ink) !important; }
+
+/* ---------- Chat ---------- */
+.chat-msg { max-width:75%; padding:.65rem 1rem; border-radius:16px; margin-bottom:.6rem; font-weight:400; }
+.chat-msg.me { background:var(--accent); color:var(--accent-ink); border-bottom-right-radius:4px; }
+.chat-msg.other { background:var(--surface-2); color:var(--ink); border-bottom-left-radius:4px; border:1px solid var(--line); }
+.chat-img { border-radius:10px; cursor:zoom-in; max-width:200px; }
+
+/* ---------- Misc ---------- */
+#backToTopBtn { background:var(--ink) !important; color:var(--paper) !important; box-shadow:var(--shadow); }
+#backToTopBtn:hover { background:var(--accent) !important; transform:none; }
+.censored-overlay { background:rgba(15,14,19,.55); }

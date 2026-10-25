@@ -1,0 +1,16 @@
+/* admin.css — หน้าแอดมิน ใช้โทนเดียวกับเว็บหลัก แต่คงโครงแดชบอร์ดเดิม */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&display=swap');
+:root { --accent:#3D35E8; --ink:#15141B; }
+html body { background:#F4F4F7 !important; font-family:'IBM Plex Sans Thai','Sarabun',sans-serif; color:var(--ink); }
+.admin-sidebar { background-color:#15141B !important; }
+.admin-sidebar .brand { border-bottom-color:#2A2933 !important; letter-spacing:.02em; }
+.admin-sidebar .nav-link { color:#A5A4B3 !important; font-weight:500 !important; }
+.admin-sidebar .nav-link:hover, .admin-sidebar .nav-link.active { background-color:var(--accent) !important; color:#fff !important; }
+.btn-purple { background-color:var(--accent) !important; }
+.btn-purple:hover { background-color:#2C25C4 !important; }
+.text-purple { color:var(--accent) !important; }
+.bg-purple { background-color:var(--accent) !important; }
+.admin-card { border-radius:14px !important; box-shadow:none !important; border:1px solid #E4E3E8; }
+.table-admin th { background:#F4F4F7 !important; color:#55545F !important; font-weight:600; }
+.fw-bold { font-weight:600 !important; }
+:root { --paper:#F7F7F5; --hot:#E0307A; --wash:#ECEBFB; --surface:#fff; --line:#E4E3E8; }
